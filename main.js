@@ -1,8 +1,8 @@
 // You should NOT change the HTML or CSS in this project (at least until you reach
 // the bonus objectives). Focus on the JavaScript.
 
-const findInput = document.querySelector(".find-input")
-const replaceInput = document.querySelector(".replace-input")
+const findInput = document.querySelector("#find-input")
+const replaceInput = document.querySelector("#replace-input")
 const replaceAllButton = document.querySelector(".replace-all-button")
 
 // The following variable holds your OUTER ARRAY of row elements.
@@ -21,6 +21,37 @@ function getCellElements (currentRowElement) {
 
 
 // YOUR CODE GOES HERE
+
+replaceAllButton.addEventListener('click', function () {
+    let findValue = findInput.value
+    let replaceValue = replaceInput.value
+
+    // console.log(findValue)
+    // console.log(replaceValue)
+
+    for (let rowIndex = 0; rowIndex < rowElements.length; rowIndex += 1) {
+
+        let rowGet = rowElements[rowIndex]
+
+        let cellArray = getCellElements(rowGet)
+
+        for (let cellIndex = 0; cellIndex < cellArray.length; cellIndex += 1) {
+
+            let cellValue = cellArray[cellIndex].innerHTML
+
+            if (cellValue.includes(findValue)) {
+
+                let replacedText
+
+                replacedText = cellValue.replace(new RegExp(findValue,'g'), replaceValue)
+
+                cellArray[cellIndex].innerHTML = replacedText
+
+            }
+        }
+        
+    }
+})
 
 
 // One last thing: dedicate very careful attention to using variables and
